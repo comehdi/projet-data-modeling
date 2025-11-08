@@ -161,3 +161,4 @@ CREATE INDEX idx_praticien_source_ids ON MDM_Praticien USING GIN (source_system_
 CREATE INDEX idx_service_source_ids ON MDM_Service USING GIN (source_system_ids);
 CREATE INDEX idx_location_source_ids ON MDM_Location USING GIN (source_system_ids);
 
+

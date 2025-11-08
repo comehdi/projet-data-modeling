@@ -13,12 +13,21 @@ Créer un référentiel unique et consolidé des données maîtres (patients, pr
 ```
 projet-data-modeling/
 ├── docs/
-│   └── 01-contexte-et-problematique.md    # Phase 1.1 : Contexte et problématique
+│   ├── 01-contexte-et-problematique.md     # Phase 1.1 : Contexte et problématique
+│   └── 02-installation-et-demarrage.md     # Phase 2 : Guide d'installation
 ├── sql/
 │   └── 01-create-tables.sql                # Phase 1.3 : Scripts de création des tables MDM
-├── docker-compose.yml                       # Phase 2 : Configuration Docker (à venir)
-├── talend/                                  # Phase 3 : Jobs Talend (à venir)
-├── airflow/                                 # Phase 3 : DAGs Airflow (à venir)
+├── airflow/
+│   ├── dags/                                # Phase 3 : DAGs Airflow
+│   ├── logs/                                # Logs Airflow
+│   ├── plugins/                             # Plugins Airflow
+│   └── config/                              # Configuration Airflow
+├── scripts/
+│   ├── start-services.sh                    # Script de démarrage des services
+│   ├── stop-services.sh                     # Script d'arrêt des services
+│   └── init-database.sh                     # Script d'initialisation de la base
+├── docker-compose.yml                       # Phase 2 : Configuration Docker
+├── .gitignore                               # Fichiers à ignorer par Git
 └── README.md                                # Ce fichier
 ```
 
@@ -60,10 +69,10 @@ Le projet couvre 4 domaines de données maîtres :
 - [x] Étape 1.2 : Répartition des Domaines MDM
 - [x] Étape 1.3 : Conception des Tables Maîtres (Golden Tables)
 
-### ⏳ Phase 2 : Mise en Place de l'Environnement (1 Jour)
-- [ ] Étape 2.1 : Créer docker-compose.yml
-- [ ] Étape 2.2 : Définir les services (PostgreSQL, OpenMetadata, Airflow, Kafka)
-- [ ] Étape 2.3 : Lancer et initialiser
+### ✅ Phase 2 : Mise en Place de l'Environnement (1 Jour)
+- [x] Étape 2.1 : Créer docker-compose.yml
+- [x] Étape 2.2 : Définir les services (PostgreSQL, OpenMetadata, Airflow, Kafka)
+- [x] Étape 2.3 : Scripts d'initialisation et de démarrage
 
 ### ⏳ Phase 3 : Data Wrangling & Intégration (Semaine 2-3)
 - [ ] Étape 3.1 : Simuler les données sources (CSV)
@@ -83,31 +92,52 @@ Le projet couvre 4 domaines de données maîtres :
 
 ### Prérequis
 
-- PostgreSQL 12+
-- Docker & Docker Compose (pour les phases suivantes)
-- Talend Open Studio (pour la Phase 3)
-- Python 3.8+ avec Airflow (pour la Phase 3)
+- **Docker** version 20.10 ou supérieure
+- **Docker Compose** version 2.0 ou supérieure
+- Au moins **8 GB de RAM** disponibles
+- Au moins **20 GB d'espace disque** libre
 
-### Création des Tables
+### Démarrage rapide
 
-1. Connectez-vous à PostgreSQL :
+1. **Démarrer tous les services** :
 ```bash
-psql -U postgres -d mdm_clinique
+# Linux/Mac
+chmod +x scripts/start-services.sh
+./scripts/start-services.sh
+
+# Windows (PowerShell)
+docker-compose --profile init up airflow-init
+docker-compose up -d
 ```
 
-2. Exécutez le script SQL :
-```sql
-\i sql/01-create-tables.sql
-```
+2. **Accéder aux services** :
+   - **PostgreSQL MDM Hub** : `localhost:5432` (User: `mdm_user`, Password: `mdm_password`, DB: `mdm_clinique`)
+   - **OpenMetadata** : http://localhost:8585
+   - **Airflow** : http://localhost:8080 (User: `admin`, Password: `admin`)
+   - **Kafka** : `localhost:9092`
 
-Ou directement :
+3. **Vérifier l'état des services** :
 ```bash
-psql -U postgres -d mdm_clinique -f sql/01-create-tables.sql
+docker-compose ps
+docker-compose logs -f
 ```
+
+### Arrêt des services
+
+```bash
+# Linux/Mac
+./scripts/stop-services.sh
+
+# Windows
+docker-compose down
+```
+
+> 📖 **Documentation complète** : Voir [docs/02-installation-et-demarrage.md](docs/02-installation-et-demarrage.md) pour plus de détails.
 
 ## 📚 Documentation
 
 - [Contexte et Problématique](docs/01-contexte-et-problematique.md) : Description détaillée du contexte du projet et des problèmes à résoudre
+- [Installation et Démarrage](docs/02-installation-et-demarrage.md) : Guide complet pour installer et démarrer l'environnement Docker
 
 ## 👥 Équipe
 

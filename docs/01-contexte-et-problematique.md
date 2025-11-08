@@ -88,3 +88,4 @@ Pour résoudre ces problèmes, nous mettons en place un **système MDM** qui :
 - **MDM_Service** : Le "Quoi" - Catalogue des services/produits
 - **MDM_Location** : Le "Où" - Référentiel géographique et logistique
 
+
