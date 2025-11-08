@@ -1,0 +1,174 @@
+# =====================================================
+# Docker Compose pour OpenMetadata (Standalone)
+# Utilisez ce fichier si vous préférez lancer OpenMetadata séparément
+# =====================================================
+# Copyright 2021 Collate
+# Licensed under the Apache License, Version 2.0
+
+volumes:
+  ingestion-volume-dag-airflow:
+  ingestion-volume-dags:
+  ingestion-volume-tmp:
+  es-data:
+
+services:
+  postgresql:
+    container_name: openmetadata_postgresql
+    image: docker.getcollate.io/openmetadata/postgresql:1.9.11
+    restart: always
+    command: "--work_mem=10MB"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker-volume/db-data-postgres:/var/lib/postgresql/data
+    networks:
+      - app_net
+    healthcheck:
+      test: psql -U postgres -tAc 'select 1' -d openmetadata_db
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  elasticsearch:
+    container_name: openmetadata_elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.4
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
+      - xpack.security.enabled=false
+    networks:
+      - app_net
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    healthcheck:
+      test: "curl -s http://localhost:9200/_cluster/health?pretty | grep status | grep -qE 'green|yellow' || exit 1"
+      interval: 15s
+      timeout: 10s
+      retries: 10
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+
+  execute-migrate-all:
+    container_name: execute_migrate_all
+    image: docker.getcollate.io/openmetadata/server:1.9.11
+    command: "./bootstrap/openmetadata-ops.sh migrate"
+    environment:
+      OPENMETADATA_CLUSTER_NAME: openmetadata
+      SERVER_PORT: 8585
+      SERVER_ADMIN_PORT: 8586
+      LOG_LEVEL: INFO
+      DB_DRIVER_CLASS: org.postgresql.Driver
+      DB_SCHEME: postgresql
+      DB_USER: openmetadata_user
+      DB_USER_PASSWORD: openmetadata_password
+      DB_HOST: postgresql
+      DB_PORT: 5432
+      OM_DATABASE: openmetadata_db
+      ELASTICSEARCH_HOST: elasticsearch
+      ELASTICSEARCH_PORT: 9200
+      ELASTICSEARCH_SCHEME: http
+      SEARCH_TYPE: elasticsearch
+      EVENT_MONITOR: prometheus
+      SECRET_MANAGER: db
+      OPENMETADATA_HEAP_OPTS: -Xmx1G -Xms1G
+      AUTHENTICATION_PROVIDER: basic
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      postgresql:
+        condition: service_healthy
+    networks:
+      - app_net
+
+  openmetadata-server:
+    container_name: openmetadata_server
+    restart: always
+    image: docker.getcollate.io/openmetadata/server:1.9.11
+    environment:
+      OPENMETADATA_CLUSTER_NAME: openmetadata
+      SERVER_PORT: 8585
+      SERVER_ADMIN_PORT: 8586
+      LOG_LEVEL: INFO
+      AUTHENTICATION_PROVIDER: basic
+      DB_DRIVER_CLASS: org.postgresql.Driver
+      DB_SCHEME: postgresql
+      DB_USER: openmetadata_user
+      DB_USER_PASSWORD: openmetadata_password
+      DB_HOST: postgresql
+      DB_PORT: 5432
+      OM_DATABASE: openmetadata_db
+      ELASTICSEARCH_HOST: elasticsearch
+      ELASTICSEARCH_PORT: 9200
+      ELASTICSEARCH_SCHEME: http
+      SEARCH_TYPE: elasticsearch
+      EVENT_MONITOR: prometheus
+      SECRET_MANAGER: db
+      OPENMETADATA_HEAP_OPTS: -Xmx1G -Xms1G
+    expose:
+      - 8585
+      - 8586
+    ports:
+      - "8585:8585"
+      - "8586:8586"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      postgresql:
+        condition: service_healthy
+      execute-migrate-all:
+        condition: service_completed_successfully
+    networks:
+      - app_net
+    healthcheck:
+      test: [ "CMD", "wget", "-q", "--spider", "http://localhost:8586/healthcheck" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  ingestion:
+    container_name: openmetadata_ingestion
+    image: docker.getcollate.io/openmetadata/ingestion:1.9.11
+    depends_on:
+      elasticsearch:
+        condition: service_started
+      postgresql:
+        condition: service_healthy
+      openmetadata-server:
+        condition: service_started
+    environment:
+      AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session"
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__OPENMETADATA_AIRFLOW_APIS__DAG_GENERATED_CONFIGS: "/opt/airflow/dag_generated_configs"
+      DB_HOST: postgresql
+      DB_PORT: 5432
+      AIRFLOW_DB: airflow_db
+      DB_USER: airflow_user
+      DB_SCHEME: postgresql+psycopg2
+      DB_PASSWORD: airflow_pass
+    entrypoint: /bin/bash
+    command:
+      - "/opt/airflow/ingestion_dependency.sh"
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    networks:
+      - app_net
+    volumes:
+      - ingestion-volume-dag-airflow:/opt/airflow/dag_generated_configs
+      - ingestion-volume-dags:/opt/airflow/dags
+      - ingestion-volume-tmp:/tmp
+
+networks:
+  app_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.240.0/24"
+

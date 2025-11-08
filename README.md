@@ -106,17 +106,33 @@ chmod +x scripts/start-services.sh
 ./scripts/start-services.sh
 
 # Windows (PowerShell)
+.\scripts\start-services.ps1
+# Ou manuellement :
 docker-compose --profile init up airflow-init
 docker-compose up -d
 ```
 
-2. **Accéder aux services** :
+2. **OpenMetadata** (optionnel - deux options disponibles) :
+   - **Option 1** : Intégré dans docker-compose (avec profil)
+     ```powershell
+     docker-compose --profile openmetadata-init up openmetadata-migrate
+     docker-compose --profile openmetadata up -d openmetadata-server
+     ```
+   - **Option 2** : Standalone (comme votre TP1)
+     ```powershell
+     .\scripts\start-openmetadata.ps1
+     # Ou
+     docker-compose -f docker-compose.openmetadata.yml up -d
+     ```
+   - **Identifiants** : Email: `admin@open-metadata.org`, Password: `admin`
+
+3. **Accéder aux services** :
    - **PostgreSQL MDM Hub** : `localhost:5432` (User: `mdm_user`, Password: `mdm_password`, DB: `mdm_clinique`)
    - **OpenMetadata** : http://localhost:8585
    - **Airflow** : http://localhost:8080 (User: `admin`, Password: `admin`)
    - **Kafka** : `localhost:9092`
 
-3. **Vérifier l'état des services** :
+4. **Vérifier l'état des services** :
 ```bash
 docker-compose ps
 docker-compose logs -f
@@ -138,6 +154,8 @@ docker-compose down
 
 - [Contexte et Problématique](docs/01-contexte-et-problematique.md) : Description détaillée du contexte du projet et des problèmes à résoudre
 - [Installation et Démarrage](docs/02-installation-et-demarrage.md) : Guide complet pour installer et démarrer l'environnement Docker
+- [Options OpenMetadata](docs/03-openmetadata-options.md) : Guide pour choisir entre OpenMetadata intégré ou standalone
+- [Dépannage Airflow](docs/04-depannage-airflow.md) : Solutions aux problèmes courants avec Airflow
 
 ## 👥 Équipe
 
