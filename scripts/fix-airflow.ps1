@@ -57,7 +57,7 @@ if ($LASTEXITCODE -eq 0) {
     Write-Host "  docker-compose logs -f airflow-webserver"
     Write-Host ""
     Write-Host "Accéder à Airflow :" -ForegroundColor Cyan
-    Write-Host "  http://localhost:8080"
+    Write-Host "  http://localhost:8081"
     Write-Host "  Username: admin"
     Write-Host "  Password: admin"
 } else {

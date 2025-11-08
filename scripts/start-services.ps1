@@ -26,33 +26,17 @@ if (-not $airflowDbExists) {
     }
 }
 
-# Démarrer tous les services (sans OpenMetadata par défaut)
+# Démarrer tous les services (sans OpenMetadata - géré séparément)
 Write-Host "Démarrage des services de base..." -ForegroundColor Yellow
+Write-Host "  Note: OpenMetadata n'est pas démarré (géré séparément)" -ForegroundColor Gray
 docker-compose up -d
 
-# Demander si l'utilisateur veut lancer OpenMetadata
 Write-Host ""
-$response = Read-Host "Voulez-vous lancer OpenMetadata maintenant ? (o/n)"
-if ($response -eq "o" -or $response -eq "O") {
-    Write-Host "Initialisation d'OpenMetadata..." -ForegroundColor Yellow
-    docker-compose --profile openmetadata-init up openmetadata-migrate
-    Write-Host "Démarrage du serveur OpenMetadata..." -ForegroundColor Yellow
-    docker-compose --profile openmetadata up -d openmetadata-server
-    Write-Host ""
-    Write-Host "✅ OpenMetadata démarré !" -ForegroundColor Green
-    Write-Host "   URL: http://localhost:8585"
-    Write-Host "   Email: admin@open-metadata.org"
-    Write-Host "   Password: admin"
-} else {
-    Write-Host ""
-    Write-Host "ℹ️  OpenMetadata n'a pas été démarré." -ForegroundColor Yellow
-    Write-Host "   Pour le démarrer plus tard :"
-    Write-Host "   docker-compose --profile openmetadata-init up openmetadata-migrate"
-    Write-Host "   docker-compose --profile openmetadata up -d openmetadata-server"
-    Write-Host ""
-    Write-Host "   Ou utilisez le script standalone :"
-    Write-Host "   .\scripts\start-openmetadata.ps1"
-}
+Write-Host "ℹ️  OpenMetadata n'est pas démarré avec ce projet." -ForegroundColor Yellow
+Write-Host "   OpenMetadata doit être géré séparément pour éviter les conflits de ports." -ForegroundColor Gray
+Write-Host "   Si vous souhaitez le démarrer via ce projet (non recommandé si déjà en cours) :" -ForegroundColor Gray
+Write-Host "   docker-compose --profile openmetadata-init up openmetadata-migrate" -ForegroundColor DarkGray
+Write-Host "   docker-compose --profile openmetadata up -d openmetadata-server" -ForegroundColor DarkGray
 
 Write-Host ""
 Write-Host "==========================================" -ForegroundColor Green
@@ -60,12 +44,12 @@ Write-Host "Services démarrés !" -ForegroundColor Green
 Write-Host "==========================================" -ForegroundColor Green
 Write-Host ""
 Write-Host "Services disponibles :" -ForegroundColor Cyan
-Write-Host "  - PostgreSQL MDM Hub:     localhost:5432"
+Write-Host "  - PostgreSQL MDM Hub:     localhost:5435"
 $openmetadataRunning = docker-compose ps | Select-String "openmetadata-server"
 if ($openmetadataRunning) {
     Write-Host "  - OpenMetadata Server:    http://localhost:8585"
 }
-Write-Host "  - Airflow Webserver:      http://localhost:8080 (admin/admin)"
+Write-Host "  - Airflow Webserver:      http://localhost:8081 (admin/admin)"
 Write-Host "  - Kafka:                  localhost:9092"
 Write-Host "  - Zookeeper:              localhost:2181"
 Write-Host ""

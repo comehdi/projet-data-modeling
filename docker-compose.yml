@@ -1,6 +1,7 @@
 services:
   # =====================================================
   # PostgreSQL MDM Hub - Base de données principale
+  # NOTE: Port externe 5435 pour éviter les conflits avec PostgreSQL local
   # =====================================================
   postgres-mdm-hub:
     image: postgres:15-alpine
@@ -11,7 +12,7 @@ services:
       POSTGRES_PASSWORD: mdm_password
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
-      - "5432:5432"
+      - "5435:5432"  # Port externe 5435 pour éviter les conflits
     volumes:
       - postgres_mdm_data:/var/lib/postgresql/data
       - ./sql/01-create-tables.sql:/docker-entrypoint-initdb.d/01-create-tables.sql
@@ -25,6 +26,8 @@ services:
 
   # =====================================================
   # OpenMetadata - Base de données
+  # NOTE: Ces services sont sous le profil "openmetadata"
+  # Pour les démarrer: docker-compose --profile openmetadata up -d
   # =====================================================
   openmetadata-db:
     image: docker.getcollate.io/openmetadata/postgresql:1.9.11
@@ -45,9 +48,12 @@ services:
       interval: 15s
       timeout: 10s
       retries: 10
+    profiles:
+      - openmetadata
 
   # =====================================================
   # Elasticsearch pour OpenMetadata
+  # NOTE: Sous profil "openmetadata" pour éviter les conflits
   # =====================================================
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.11.4
@@ -68,6 +74,8 @@ services:
       interval: 15s
       timeout: 10s
       retries: 10
+    profiles:
+      - openmetadata
 
   # =====================================================
   # OpenMetadata - Migration (one-time)
@@ -191,6 +199,7 @@ services:
 
   # =====================================================
   # Airflow - Webserver
+  # NOTE: Port externe 8081 pour éviter les conflits avec d'autres services
   # =====================================================
   airflow-webserver:
     image: apache/airflow:2.8.0
@@ -203,11 +212,11 @@ services:
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow-db/airflow
-      - AIRFLOW__CORE__FERNET_KEY=
+      - AIRFLOW__CORE__FERNET_KEY=7tvFSa7K0A2qIZRi61TqD6szQxgBrsUSmCPUolQy5pw=
       - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=true
       - AIRFLOW__CORE__LOAD_EXAMPLES=false
       - AIRFLOW__API__AUTH_BACKENDS=airflow.api.auth.backend.basic_auth
-      - AIRFLOW__WEBSERVER__SECRET_KEY=
+      - AIRFLOW__WEBSERVER__SECRET_KEY=mdm_airflow_secret_key_2024_secure_random_string_12345
       - AIRFLOW__CORE__SECURITY=use_default
       - _AIRFLOW_DB_UPGRADE=true
       - _AIRFLOW_WWW_USER_CREATE=true
@@ -225,7 +234,7 @@ services:
       - ./airflow/plugins:/opt/airflow/plugins
       - ./airflow/config:/opt/airflow/config
     ports:
-      - "8080:8080"
+      - "8081:8080"  # Port externe 8081 pour éviter les conflits
     command: webserver
     networks:
       - mdm-network
@@ -250,11 +259,11 @@ services:
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow-db/airflow
-      - AIRFLOW__CORE__FERNET_KEY=
+      - AIRFLOW__CORE__FERNET_KEY=7tvFSa7K0A2qIZRi61TqD6szQxgBrsUSmCPUolQy5pw=
       - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=true
       - AIRFLOW__CORE__LOAD_EXAMPLES=false
       - AIRFLOW__API__AUTH_BACKENDS=airflow.api.auth.backend.basic_auth
-      - AIRFLOW__WEBSERVER__SECRET_KEY=
+      - AIRFLOW__WEBSERVER__SECRET_KEY=mdm_airflow_secret_key_2024_secure_random_string_12345
       - AIRFLOW__CORE__SECURITY=use_default
       - _PIP_ADDITIONAL_REQUIREMENTS=
     user: "${AIRFLOW_UID:-50000}:0"
@@ -286,7 +295,7 @@ services:
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow-db/airflow
-      - AIRFLOW__CORE__FERNET_KEY=
+      - AIRFLOW__CORE__FERNET_KEY=7tvFSa7K0A2qIZRi61TqD6szQxgBrsUSmCPUolQy5pw=
       - AIRFLOW__CORE__SECURITY=use_default
       - _AIRFLOW_DB_UPGRADE=true
       - _AIRFLOW_WWW_USER_CREATE=true

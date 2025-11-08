@@ -54,11 +54,11 @@ echo "Services démarrés !"
 echo "=========================================="
 echo ""
 echo "Services disponibles :"
-echo "  - PostgreSQL MDM Hub:     localhost:5432"
+echo "  - PostgreSQL MDM Hub:     localhost:5435"
 if docker-compose ps | grep -q "openmetadata-server"; then
     echo "  - OpenMetadata Server:    http://localhost:8585"
 fi
-echo "  - Airflow Webserver:      http://localhost:8080 (admin/admin)"
+echo "  - Airflow Webserver:      http://localhost:8081 (admin/admin)"
 echo "  - Kafka:                  localhost:9092"
 echo "  - Zookeeper:              localhost:2181"
 echo ""

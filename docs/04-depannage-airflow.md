@@ -190,7 +190,7 @@ docker-compose ps
 ```
 
 2. **Accès au webserver** :
-Ouvrez http://localhost:8080 dans votre navigateur
+Ouvrez http://localhost:8081 dans votre navigateur
 - Username: `admin`
 - Password: `admin`
 

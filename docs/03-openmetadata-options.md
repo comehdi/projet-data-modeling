@@ -68,8 +68,8 @@ Pour connecter OpenMetadata à votre base de données MDM (`mdm_clinique`), vous
 2. Aller dans **Settings** > **Services** > **Databases**
 3. Ajouter une nouvelle connexion PostgreSQL :
    - **Name** : MDM Clinique
-   - **Host** : `postgres-mdm-hub` (si intégré) ou `localhost` (si standalone)
-   - **Port** : `5432`
+   - **Host** : `postgres-mdm-hub` (si intégré dans Docker) ou `localhost` (si standalone)
+   - **Port** : `5432` (si intégré) ou `5435` (si standalone - port externe pour éviter les conflits)
    - **Database** : `mdm_clinique`
    - **Username** : `mdm_user`
    - **Password** : `mdm_password`
@@ -80,7 +80,8 @@ Si vous utilisez les deux options en même temps, vous aurez des conflits de por
 
 | Service | Port | Conflit possible |
 |---------|------|------------------|
-| PostgreSQL MDM | 5432 | ✅ Conflit avec OpenMetadata standalone |
+| PostgreSQL MDM (externe) | 5435 | ❌ Pas de conflit (port externe) |
+| PostgreSQL MDM (interne Docker) | 5432 | ✅ Conflit uniquement si OpenMetadata standalone utilise 5432 |
 | PostgreSQL OpenMetadata (intégré) | 5433 | ❌ Pas de conflit |
 | PostgreSQL OpenMetadata (standalone) | 5432 | ✅ Conflit avec PostgreSQL MDM |
 | OpenMetadata Server | 8585 | ✅ Conflit si les deux sont lancés |

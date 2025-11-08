@@ -127,9 +127,9 @@ docker-compose up -d
    - **Identifiants** : Email: `admin@open-metadata.org`, Password: `admin`
 
 3. **Accéder aux services** :
-   - **PostgreSQL MDM Hub** : `localhost:5432` (User: `mdm_user`, Password: `mdm_password`, DB: `mdm_clinique`)
+   - **PostgreSQL MDM Hub** : `localhost:5435` (User: `mdm_user`, Password: `mdm_password`, DB: `mdm_clinique`)
    - **OpenMetadata** : http://localhost:8585
-   - **Airflow** : http://localhost:8080 (User: `admin`, Password: `admin`)
+   - **Airflow** : http://localhost:8081 (User: `admin`, Password: `admin`)
    - **Kafka** : `localhost:9092`
 
 4. **Vérifier l'état des services** :
