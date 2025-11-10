@@ -1,0 +1,33 @@
+id,nom,prenom,specialite,telephone,email,etat
+6523,Martin,J.,Cardio,,j..martin@clinique-c.fr,inactif
+1214,DUBOIS,marie,Pédiatrie,07.77.30.40.35,marie.dubois@clinique-c.fr,en mission
+7181,Lefebvre,Claude,Pédiatrie,06.46.50.24.71,claude.lefebvre@clinique-c.fr,actif
+6188,MARTIN,Marie,Orthopédie,,marie.martin@clinique-c.fr,actif
+5072,Bernard,Marie,Urologie,06.99.82.64.54,,vacances
+7142,Leroy,SOPHIE,Cardiologie,07.89.63.80.96,sophie.leroy@clinique-c.fr,en mission
+2540,Michel,PIERRE,Orthopédie,07.82.21.92.88,pierre.michel@clinique-c.fr,inactif
+6345,Moreau,DANIEL,Neurologie,06.54.31.13.68,daniel.moreau@clinique-c.fr,actif
+8284,Simon,Daniel,Hématologie,06.68.92.15.62,,en mission
+6885,Robert,ALAIN,Pédiatrie,07.77.87.59.22,alain.robert@clinique-c.fr,en mission
+1401,Robert,Stéphane,Pneumologie,06.82.30.97.13,stéphane.robert@clinique-c.fr,actif
+8202,Moreau,Laurent,Gastro-entérologie,06.60.68.74.29,laurent.moreau@clinique-c.fr,vacances
+9448,Petit,Claude,Endocrinologie,06.32.49.43.95,claude.petit@clinique-c.fr,en mission
+1267,Garcia,Jean,Pneumologie,07.99.20.98.84,jean.garcia@clinique-c.fr,vacances
+9542,LEROY,SANDRINE,Radiologie,06.37.53.87.88,sandrine.leroy@clinique-c.fr,inactif
+4490,Simon,Alain,Dermatologie,,alain.simon@clinique-c.fr,vacances
+5314,LEFEBVRE,Alain,Psychiatrie,,alain.lefebvre@clinique-c.fr,congé
+7018,Thomas,Nathalie,Gastro-entérologie,06.61.65.25.85,nathalie.thomas@clinique-c.fr,vacances
+3314,Petit,Daniel,Hématologie,07.16.85.11.68,daniel.petit@clinique-c.fr,en mission
+4717,André,Céline,Oncologie,,céline.andré@clinique-c.fr,en mission
+4102,ANDRÉ,Nicolas,Gynécologie,07.15.11.44.70,nicolas.andré@clinique-c.fr,en mission
+5955,GIRARD,Laurent,Neurologie,06.74.46.74.23,laurent.girard@clinique-c.fr,congé
+1170,DUBOIS,VALÉRIE,Orthopédie,07.71.65.24.87,,congé
+1329,Robert,Sandrine,Urologie,07.65.91.62.47,,congé
+9149,Lefevre,LAURENT,Radiologie,,,en mission
+3562,Morel,Monique,Anesthésie,07.50.20.97.86,monique.morel@clinique-c.fr,actif
+9623,Laurent,SYLVIE,Psychiatrie,07.12.16.11.22,sylvie.laurent@clinique-c.fr,en mission
+7988,Dubois,PIERRE,Ophtalmologie,06.90.99.23.11,pierre.dubois@clinique-c.fr,vacances
+2963,Petit,Laurent,Orthopédie,06.86.64.58.28,,vacances
+3634,Richard,Patrick,Gastro-entérologie,06.89.40.24.13,,congé
+4885,Moreau,Marie,Hématologie,07.41.80.44.78,marie.moreau@clinique-c.fr,vacances
+5882,LEFEBVRE,Daniel,Gastro-entérologie,06.61.45.90.61,daniel.lefebvre@clinique-c.fr,en mission

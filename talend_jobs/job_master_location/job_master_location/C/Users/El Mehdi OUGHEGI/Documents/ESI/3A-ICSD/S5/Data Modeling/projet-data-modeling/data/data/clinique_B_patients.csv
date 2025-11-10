@@ -1,0 +1,46 @@
+id,nom,prenom,date_naissance,telephone,infos
+PAT-25,Dupond,Jean,1980/05/01,+33 7 74 49 95 62,
+PAT-99,MARTIN,marie,1975/03/15,+33 6 34 63 95 58,"moules, sulfamides"
+PAT-48,BERNARD,SOPHIE,1990/11/20,+33 6 48 46 36 65,lactose
+PAT-21,Bonnet,Caroline,1968/03/14,+33 7 31 94 20 46,lactose
+PAT-90,Vincent,Sylvie,1987/09/18,+33 6 13 15 41 70,"pollen, gluten"
+PAT-99,Lefevre,Daniel,1963/07/08,+33 6 93 98 10 23,
+PAT-66,Dubois,Caroline,1957/11/10,+33 6 68 27 69 95,lactose
+PAT-72,Bonnet,Emilie,1993/08/03,+33 7 67 43 41 91,
+PAT-79,Bertrand,Sylvie,1968/05/28,,
+PAT-17,Durand,Catherine,1994/05/03,+33 6 37 18 63 62,
+PAT-59,Dupuis,Nathalie,1972/12/04,+33 6 83 58 71 10,
+PAT-69,Michel,Thomas,1964/01/25,+33 7 72 13 59 53,"œufs, iode"
+PAT-43,Martin,Alain,1972/07/08,+33 6 20 92 64 27,
+PAT-79,Fournier,David,1988/11/17,+33 7 58 45 63 42,œufs
+PAT-70,Girard,Sophie,1987/10/02,+33 6 13 41 35 12,
+PAT-49,Lefebvre,Isabelle,1966/02/23,+33 7 31 87 87 24,
+PAT-99,Martin,Philippe,1979/11/18,+33 7 60 35 19 85,aspirine
+PAT-53,Petit,Valérie,1936/06/08,+33 6 54 78 64 94,
+PAT-65,Dupuis,Jean,1963/11/22,,"œufs, iode"
+PAT-21,Bertrand,Monique,1952/08/11,+33 7 69 65 85 44,
+PAT-43,Bonnet,Martine,1985/12/28,+33 7 53 13 73 51,
+PAT-72,Bertrand,Sandrine,1954/05/21,+33 7 81 11 76 34,
+PAT-94,Martinez,Sylvie,1949/12/03,+33 7 12 21 47 38,
+PAT-25,Martinez,Céline,1958/03/19,+33 7 80 52 55 99,latex
+PAT-22,Fournier,Daniel,1997/02/21,+33 6 34 37 71 45,"acariens, moules, arachides"
+PAT-47,Roux,Daniel,1987/06/17,+33 7 11 78 26 45,
+PAT-71,Legrand,Alain,1998/08/31,+33 7 70 71 66 53,
+PAT-81,Thomas,Isabelle,1971/12/02,+33 6 29 29 82 48,
+PAT-88,Michel,Thomas,1938/04/12,+33 7 66 48 85 64,
+PAT-67,Lefebvre,Philippe,1951/10/02,+33 6 30 40 32 80,
+PAT-90,Roux,Antoine,2004/12/09,+33 7 99 68 19 97,
+PAT-82,Lambert,Daniel,1997/07/28,+33 6 44 28 19 17,
+PAT-15,Bonnet,Laurent,1996/09/17,+33 7 99 61 44 74,moules
+PAT-15,Fournier,Emilie,1953/09/15,+33 6 39 96 83 85,"crustacés, arachides, moules"
+PAT-52,Martinez,Monique,1961/04/23,+33 7 33 84 65 91,"pollen, lactose, gluten"
+PAT-42,Richard,Stéphane,1993/06/10,+33 7 46 94 61 80,
+PAT-89,Petit,Stéphane,1938/07/24,+33 6 94 79 69 62,
+PAT-99,Bonnet,Aurélie,1939/09/08,,
+PAT-24,Petit,Aurélie,2005/04/12,+33 6 30 49 80 11,
+PAT-28,Petit,Caroline,1949/10/04,+33 7 47 75 44 63,"latex, pollen, acariens"
+PAT-10,Laurent,David,1954/02/04,+33 6 18 45 63 53,sulfamides
+PAT-79,Vincent,Laurent,1955/03/19,+33 7 29 67 78 71,
+PAT-58,François,David,1978/12/31,+33 6 83 59 39 62,
+PAT-68,Leroy,David,1963/06/07,+33 6 74 85 52 22,acariens
+PAT-52,Leroy,Jean,1971/02/01,+33 6 19 70 43 53,aspirine

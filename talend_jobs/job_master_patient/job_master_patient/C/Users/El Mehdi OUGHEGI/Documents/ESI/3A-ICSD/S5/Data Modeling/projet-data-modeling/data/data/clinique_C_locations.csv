@@ -1,0 +1,43 @@
+id,site,batiment,etage,chambre,adresse,code_postal,ville,type
+6534,Clinique Horizon - Paris,Bât. A,RDC,CH-244,15 rue de la Santé,75014,Paris,Bureau
+9284,CLINIQUE HORIZON LYON,Batiment Principal,Rez-de-chaussée,CH-145,42 avenue de la République,69003,Lyon,Bureau
+4230,CLINIQUE HORIZON MARSEILLE,Pavillon Ouest,1er étage,CH-237,8 boulevard de la Canebière,13001,Marseille,Salle d'attente
+2980,Clinique Horizon Paris,Pavillon Est,RDC,CH-194,15 rue de la Santé,75014,Paris,Laboratoire
+7177,Clinique Horizon Lyon,Bâtiment B,Rez-de-chaussée,SO-04,42 avenue de la République,69003,Lyon,Bureau
+4511,CLINIQUE HORIZON PARIS,Bâtiment A,Rez-de-chaussée,CH-105,15 rue de la Santé,75014,Paris,Bureau
+1832,CLINIQUE HORIZON LYON,Bâtiment A,RDC,CH-157,42 avenue de la République,69003,Lyon,Bureau
+5020,CLINIQUE HORIZON PARIS,Annexe,Rez-de-chaussée,CH-122,15 rue de la Santé,75014,Paris,Salle d'attente
+3931,CLINIQUE HORIZON MARSEILLE,Bâtiment C,RDC,CH-236,8 boulevard de la Canebière,13001,Marseille,Salle d'opération
+9700,Clinique Horizon Lyon,Bâtiment B,1er étage,CH-242,42 avenue de la République,69003,Lyon,Site
+8692,Clinique Horizon Lyon,Bâtiment Principal,1er étage,CH-226,42 avenue de la République,69003,Lyon,Bureau
+5002,Clinique Horizon Lyon,Pavillon Ouest,3ème étage,CH-139,42 avenue de la République,69003,Lyon,Laboratoire
+8185,Clinique Horizon Lyon,Pavillon Est,2ème étage,CH-127,42 avenue de la République,69003,Lyon,Laboratoire
+5007,Clinique Horizon Paris,Bâtiment Principal,Sous-sol,,15 rue de la Santé,75014,Paris,Salle d'attente
+4236,CLINIQUE HORIZON PARIS,Bâtiment A,3ème étage,SO-02,15 rue de la Santé,75014,Paris,Site
+3777,Clinique Horizon Paris,Bâtiment A,2ème étage,,15 rue de la Santé,75014,Paris,Chambre
+8553,Clinique Horizon Paris,Pavillon Ouest,3ème étage,,15 rue de la Santé,75014,Paris,Unité
+3475,Clinique Horizon Marseille,Bâtiment C,RDC,CH-118,8 boulevard de la Canebière,13001,Marseille,Site
+4569,Clinique Horizon Paris,Bâtiment A,RDC,CH-156,15 rue de la Santé,75014,Paris,Salle d'attente
+8613,Clinique Horizon Lyon,Bâtiment C,1er étage,CH-185,42 avenue de la République,69003,Lyon,Bureau
+5026,Clinique Horizon Paris,Bâtiment Principal,Rez-de-chaussée,,15 rue de la Santé,75014,Paris,Salle d'attente
+4202,Clinique Horizon Lyon,Bâtiment A,,CH-103,42 avenue de la République,69003,Lyon,Bureau
+1717,Clinique Horizon Lyon,Bâtiment C,Sous-sol,CH-118,42 avenue de la République,69003,Lyon,Bureau
+1227,CLINIQUE HORIZON LYON,Pavillon Ouest,RDC,CH-156,42 avenue de la République,69003,Lyon,Unité
+7720,Clinique Horizon Marseille,Pavillon Ouest,RDC,CH-162,8 boulevard de la Canebière,13001,Marseille,Site
+1701,Clinique Horizon Lyon,Pavillon Ouest,,CH-169,42 avenue de la République,69003,Lyon,Site
+7749,Clinique Horizon Marseille,Pavillon Ouest,,SO-09,8 boulevard de la Canebière,13001,Marseille,Salle d'attente
+4249,Clinique Horizon Marseille,Annexe,Sous-sol,,8 boulevard de la Canebière,13001,Marseille,Site
+7540,Clinique Horizon Paris,Pavillon Est,1er étage,CH-180,15 rue de la Santé,75014,Paris,Chambre
+1182,CLINIQUE HORIZON MARSEILLE,Bâtiment B,1er étage,CH-207,8 boulevard de la Canebière,13001,Marseille,Site
+8039,Clinique Horizon Paris,Pavillon Ouest,RDC,CH-240,15 rue de la Santé,75014,Paris,Chambre
+4454,Clinique Horizon Marseille,Bâtiment C,RDC,CH-227,8 boulevard de la Canebière,13001,Marseille,Site
+5337,Clinique Horizon Marseille,Annexe,RDC,CH-209,8 boulevard de la Canebière,13001,Marseille,Salle d'opération
+9245,Clinique Horizon Lyon,Bâtiment B,RDC,CH-225,42 avenue de la République,69003,Lyon,Salle d'opération
+8180,CLINIQUE HORIZON MARSEILLE,Pavillon Est,1er étage,CH-174,8 boulevard de la Canebière,13001,Marseille,Unité
+7582,CLINIQUE HORIZON LYON,Bâtiment B,Sous-sol,,42 avenue de la République,69003,Lyon,Unité
+2214,Clinique Horizon Marseille,Bâtiment A,Sous-sol,CH-234,8 boulevard de la Canebière,13001,Marseille,Chambre
+7591,CLINIQUE HORIZON MARSEILLE,Pavillon Est,,CH-181,8 boulevard de la Canebière,13001,Marseille,Unité
+5488,Clinique Horizon Marseille,Bâtiment B,2ème étage,CH-154,8 boulevard de la Canebière,13001,Marseille,Bureau
+2159,Clinique Horizon Marseille,Bâtiment C,2ème étage,CH-144,8 boulevard de la Canebière,13001,Marseille,Unité
+8148,Clinique Horizon Marseille,Bâtiment B,1er étage,CH-205,8 boulevard de la Canebière,13001,Marseille,Site
+3799,Clinique Horizon Marseille,Pavillon Est,RDC,CH-154,8 boulevard de la Canebière,13001,Marseille,Salle d'attente

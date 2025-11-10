@@ -1,0 +1,39 @@
+id,nom_site,batiment,niveau,numero,adresse_complete,type_localisation
+CH-42,CLINIQUE HORIZON PARIS,Batiment A,RDC,CH-127,"15 rue de la Santé, 75014 Paris",Salle d'attente
+CH-40,CLINIQUE HORIZON LYON,Batiment Principal,Rez-de-chaussée,CH-235,"42 avenue de la République, 69003 Lyon",Laboratoire
+CH-30,Clinique Horizon Lyon,Bâtiment C,,CH-247,"42 avenue de la République, 69003 Lyon",Unité
+CH-78,Clinique Horizon Marseille,Bâtiment C,,SO-15,"8 boulevard de la Canebière, 13001 Marseille",Bureau
+CH-30,Clinique Horizon Marseille,Bâtiment B,Sous-sol,CH-126,"8 boulevard de la Canebière, 13001 Marseille",Unité
+CH-23,Clinique Horizon Paris,Pavillon Ouest,3ème étage,CH-172,"15 rue de la Santé, 75014 Paris",Chambre
+CH-67,Clinique Horizon Paris,Pavillon Ouest,3ème étage,CH-137,"15 rue de la Santé, 75014 Paris",Bureau
+CH-73,Clinique Horizon Marseille,Bâtiment Principal,Sous-sol,CH-198,"8 boulevard de la Canebière, 13001 Marseille",Unité
+CH-29,Clinique Horizon Paris,Bâtiment C,,CH-119,"15 rue de la Santé, 75014 Paris",Salle d'attente
+CH-20,Clinique Horizon Paris,Pavillon Ouest,Rez-de-chaussée,CH-105,"15 rue de la Santé, 75014 Paris",Site
+CH-74,Clinique Horizon Marseille,Pavillon Est,,CH-206,"8 boulevard de la Canebière, 13001 Marseille",Unité
+CH-34,Clinique Horizon Marseille,Annexe,3ème étage,CH-115,"8 boulevard de la Canebière, 13001 Marseille",Chambre
+CH-31,Clinique Horizon Lyon,Bâtiment Principal,Sous-sol,SO-19,"42 avenue de la République, 69003 Lyon",Bureau
+CH-53,Clinique Horizon Lyon,Pavillon Ouest,2ème étage,CH-196,"42 avenue de la République, 69003 Lyon",Unité
+CH-26,Clinique Horizon Lyon,Pavillon Est,,SO-19,"42 avenue de la République, 69003 Lyon",Laboratoire
+CH-78,Clinique Horizon Paris,Bâtiment B,Rez-de-chaussée,CH-222,"15 rue de la Santé, 75014 Paris",Laboratoire
+CH-57,Clinique Horizon Marseille,Pavillon Ouest,2ème étage,,"8 boulevard de la Canebière, 13001 Marseille",Salle d'attente
+CH-38,Clinique Horizon Lyon,Pavillon Est,2ème étage,CH-211,"42 avenue de la République, 69003 Lyon",Bureau
+CH-97,Clinique Horizon Marseille,Bâtiment Principal,1er étage,CH-180,"8 boulevard de la Canebière, 13001 Marseille",Chambre
+CH-32,Clinique Horizon Lyon,Pavillon Ouest,RDC,CH-233,"42 avenue de la République, 69003 Lyon",Site
+CH-75,Clinique Horizon Marseille,Bâtiment Principal,2ème étage,CH-188,"8 boulevard de la Canebière, 13001 Marseille",Salle d'attente
+CH-39,Clinique Horizon Lyon,Pavillon Ouest,,CH-245,"42 avenue de la République, 69003 Lyon",Salle d'opération
+CH-93,Clinique Horizon Marseille,Pavillon Ouest,Rez-de-chaussée,CH-249,"8 boulevard de la Canebière, 13001 Marseille",Salle d'attente
+CH-70,Clinique Horizon Paris,Annexe,,,"15 rue de la Santé, 75014 Paris",Bureau
+CH-65,Clinique Horizon Lyon,Bâtiment Principal,3ème étage,CH-246,"42 avenue de la République, 69003 Lyon",Salle d'opération
+CH-70,Clinique Horizon Paris,Pavillon Ouest,RDC,CH-240,"15 rue de la Santé, 75014 Paris",Bureau
+CH-77,Clinique Horizon Marseille,Bâtiment A,1er étage,CH-235,"8 boulevard de la Canebière, 13001 Marseille",Salle d'attente
+CH-53,Clinique Horizon Marseille,Bâtiment Principal,1er étage,CH-211,"8 boulevard de la Canebière, 13001 Marseille",Salle d'attente
+CH-13,Clinique Horizon Paris,Pavillon Est,3ème étage,CH-127,"15 rue de la Santé, 75014 Paris",Bureau
+CH-66,Clinique Horizon Marseille,Pavillon Ouest,2ème étage,CH-198,"8 boulevard de la Canebière, 13001 Marseille",Chambre
+CH-37,Clinique Horizon Paris,Pavillon Ouest,Sous-sol,CH-221,"15 rue de la Santé, 75014 Paris",Chambre
+CH-42,Clinique Horizon Paris,Pavillon Est,2ème étage,CH-158,"15 rue de la Santé, 75014 Paris",Site
+CH-85,Clinique Horizon Lyon,Bâtiment C,,CH-133,"42 avenue de la République, 69003 Lyon",Site
+CH-94,Clinique Horizon Marseille,Bâtiment Principal,RDC,CH-239,"8 boulevard de la Canebière, 13001 Marseille",Bureau
+CH-29,Clinique Horizon Paris,Bâtiment A,2ème étage,CH-162,"15 rue de la Santé, 75014 Paris",Site
+CH-18,Clinique Horizon Paris,Bâtiment Principal,Rez-de-chaussée,,"15 rue de la Santé, 75014 Paris",Bureau
+CH-92,Clinique Horizon Marseille,Annexe,,CH-122,"8 boulevard de la Canebière, 13001 Marseille",Unité
+CH-31,Clinique Horizon Lyon,Bâtiment C,Sous-sol,CH-200,"42 avenue de la République, 69003 Lyon",Bureau

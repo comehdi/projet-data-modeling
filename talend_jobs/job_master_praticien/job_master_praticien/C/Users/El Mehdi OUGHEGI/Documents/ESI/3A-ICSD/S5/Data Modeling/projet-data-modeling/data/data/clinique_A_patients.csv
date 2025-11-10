@@ -1,0 +1,51 @@
+id,nom,prenom,ddn,tel,allergies
+P-754,Dupont,Jean,01-05-1980,0613356886,
+P-242,Martin,Marie,15-03-1975,0683197857,
+P-532,Bernard,Sophie,20-11-1990,0613999315,
+P-990,Martin,Patrick,08-07-1957,0739587039,
+P-881,Moreau,Jean,27-03-1945,0730868105,
+P-649,Richard,Sandrine,19-07-1999,0756164955,"œufs, pollen"
+P-171,Lefevre,Isabelle,18-10-2000,0787490893,
+P-750,Michel,Pierre,07-07-1938,0641244663,pollen
+P-750,Moreau,Céline,28-08-1974,0796977837,
+P-432,Garcia,Bernard,17-03-1993,0795899313,
+P-680,Michel,Sophie,27-12-2004,0745935572,
+P-352,Lefebvre,Stéphane,24-01-1949,0729175900,
+P-148,Lambert,Claude,08-07-1955,0628566572,
+P-490,Leroy,Isabelle,30-07-1951,0790048665,
+P-887,David,Caroline,27-03-1958,0625374874,arachides
+P-880,Petit,Sandrine,15-07-1981,0710435578,"arachides, acariens"
+P-265,Richard,Monique,09-10-1951,0630513739,
+P-414,Fournier,Jean,13-01-1964,,"sulfamides, soja"
+P-884,Dubois,Sylvie,05-04-1986,0621496211,"soja, acariens"
+P-652,Durand,Alain,05-09-1948,0645575298,latex
+P-330,Vincent,Daniel,27-01-1972,0768800797,latex
+P-172,Morel,Michel,24-12-2005,0688979095,
+P-597,Michel,Sophie,27-10-2001,0719510312,
+P-199,Durand,Nathalie,22-12-1942,0742614537,"latex, aspirine"
+P-512,Girard,Emilie,13-11-1969,0697705310,
+P-355,Richard,Sandrine,24-07-1985,0728814949,
+P-195,Bonnet,Michel,30-06-1958,,pénicilline
+P-102,Moreau,Sylvie,29-05-1971,0663826716,
+P-777,David,David,11-07-1937,0766775103,"soja, acariens"
+P-421,Leroy,Aurélie,31-10-1990,0687736262,
+P-290,Dubois,Sophie,17-06-1955,0617634247,
+P-708,Thomas,Michel,17-04-1947,0726090908,moules
+P-833,Robert,Pierre,04-04-1970,0744999379,
+P-869,Garcia,Stéphane,15-01-1984,0771367643,
+P-457,Dupont,Michel,02-10-1966,0619832887,iode
+P-769,Garcia,Michel,19-09-1974,0782909480,soja
+P-209,Vincent,Jean,09-05-1948,,
+P-357,Bertrand,Françoise,04-08-1982,0737326368,"acariens, pollen"
+P-889,Robert,Sophie,18-12-1950,0715917225,
+P-177,David,Alain,16-05-1993,0785283645,
+P-415,Bernard,Françoise,29-09-1974,0667684996,
+P-898,Bernard,Céline,08-10-1975,0699514287,
+P-854,Leroy,Thomas,18-08-1986,0665337219,
+P-818,Dupuis,Sandrine,08-10-1947,0645810056,
+P-940,Lefevre,Philippe,24-05-2004,0636786211,arachides
+P-171,Michel,Patrick,29-09-2005,0754058573,
+P-367,Girard,Martine,26-04-1950,0713704481,
+P-720,David,Monique,08-06-2004,,"lactose, gluten"
+P-925,Lefevre,Isabelle,21-02-1956,0668526649,
+P-779,André,Daniel,05-03-1969,,lactose

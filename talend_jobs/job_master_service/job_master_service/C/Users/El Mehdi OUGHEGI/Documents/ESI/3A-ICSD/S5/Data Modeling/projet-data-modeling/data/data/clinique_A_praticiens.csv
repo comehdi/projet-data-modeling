@@ -1,0 +1,31 @@
+id,nom,prenom,specialite,tel,email,statut
+DOC-139,Martin,Jean,Cardiologie,0729318389,jean.martin@clinique-a.fr,en mission
+DOC-478,Dubois,Marie,Pédiatrie,0670826028,marie.dubois@clinique-a.fr,en mission
+DOC-873,Martin,Valérie,Chirurgie générale,0793820299,valérie.martin@clinique-a.fr,vacances
+DOC-484,Lefebvre,Nathalie,Hématologie,,,actif
+DOC-618,Thomas,Michel,Hématologie,0727274395,michel.thomas@clinique-a.fr,vacances
+DOC-959,Vincent,Alain,Hématologie,0687748016,,actif
+DOC-196,Moreau,Catherine,Ophtalmologie,0688433761,catherine.moreau@clinique-a.fr,actif
+DOC-899,Garcia,Valérie,Pédiatrie,0732389975,,actif
+DOC-778,Bernard,Bernard,Urgences,0691131981,,vacances
+DOC-716,Moreau,Sophie,Urologie,0768249608,,congé
+DOC-806,Laurent,Pierre,Gynécologie,0687053129,pierre.laurent@clinique-a.fr,actif
+DOC-229,Michel,Martine,Rhumatologie,0610338157,,actif
+DOC-963,Martin,Céline,Pédiatrie,0744760513,céline.martin@clinique-a.fr,congé
+DOC-298,Lefebvre,Bernard,Endocrinologie,0637661440,bernard.lefebvre@clinique-a.fr,congé
+DOC-290,Vincent,Sandrine,Psychiatrie,0753936154,sandrine.vincent@clinique-a.fr,actif
+DOC-327,Richard,Martine,Neurologie,0699879209,martine.richard@clinique-a.fr,en mission
+DOC-162,Petit,Monique,Neurologie,0740180729,,vacances
+DOC-233,Martin,Sophie,Cardiologie,0687703849,sophie.martin@clinique-a.fr,inactif
+DOC-525,Lefebvre,Patrick,Gynécologie,0639465386,,vacances
+DOC-367,Lefebvre,Philippe,Radiologie,0660484091,,en mission
+DOC-374,Robert,Martine,Anesthésie,0636802255,martine.robert@clinique-a.fr,actif
+DOC-427,André,Sylvie,Ophtalmologie,0674658414,sylvie.andré@clinique-a.fr,inactif
+DOC-406,Martin,Isabelle,Neurologie,0648395449,isabelle.martin@clinique-a.fr,congé
+DOC-630,David,Céline,Rhumatologie,0783717263,céline.david@clinique-a.fr,congé
+DOC-918,Dubois,Laurent,Neurologie,0691385508,laurent.dubois@clinique-a.fr,actif
+DOC-912,André,Stéphane,Endocrinologie,0635230905,stéphane.andré@clinique-a.fr,vacances
+DOC-450,Bertrand,Céline,Dermatologie,0772016726,céline.bertrand@clinique-a.fr,actif
+DOC-203,Garcia,Patrick,Ophtalmologie,0653132434,patrick.garcia@clinique-a.fr,en mission
+DOC-483,André,Daniel,Rhumatologie,0641759850,daniel.andré@clinique-a.fr,inactif
+DOC-410,Michel,Françoise,Oncologie,0780753053,françoise.michel@clinique-a.fr,inactif

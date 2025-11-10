@@ -1,0 +1,29 @@
+id,nom,prenom,specialite_medicale,telephone,email_pro,status
+MED-26,MARTIN,JEAN,Cardiologie,+33 6 27 32 98 92,jean.martin@clinique-b.com,actif
+MED-43,DUBOIS,marie,Pédiatrie,+33 7 77 33 42 23,marie.dubois@clinique-b.com,inactif
+MED-58,Thomas,Michel,Radiologie,+33 7 22 29 83 98,michel.thomas@clinique-b.com,actif
+MED-23,Garcia,Laurent,Rhumatologie,+33 6 11 96 72 71,laurent.garcia@clinique-b.com,en mission
+MED-55,Lefevre,Sandrine,Neurologie,+33 6 97 96 79 64,sandrine.lefevre@clinique-b.com,inactif
+MED-25,Dubois,Jean,Ophtalmologie,+33 6 21 81 51 33,,en mission
+MED-35,Garcia,Nathalie,Dermatologie,,nathalie.garcia@clinique-b.com,actif
+MED-48,Petit,Valérie,Oncologie,,valérie.petit@clinique-b.com,actif
+MED-90,Dubois,Jean,Chirurgie générale,+33 6 43 45 60 87,jean.dubois@clinique-b.com,inactif
+MED-36,Simon,Nicolas,Urologie,+33 7 90 62 94 52,nicolas.simon@clinique-b.com,vacances
+MED-19,Michel,Patrick,Urologie,+33 6 66 14 84 32,patrick.michel@clinique-b.com,actif
+MED-77,Dubois,Patrick,Rhumatologie,,patrick.dubois@clinique-b.com,vacances
+MED-11,Durand,Daniel,Urologie,+33 6 40 50 56 23,daniel.durand@clinique-b.com,inactif
+MED-81,Fournier,Claude,Endocrinologie,+33 7 14 97 18 35,claude.fournier@clinique-b.com,actif
+MED-79,Michel,Martine,Chirurgie générale,+33 7 99 84 51 57,martine.michel@clinique-b.com,congé
+MED-48,Garcia,Jean,Endocrinologie,,,vacances
+MED-55,Laurent,Jean,Rhumatologie,+33 6 92 60 48 44,jean.laurent@clinique-b.com,actif
+MED-73,Lefevre,Marie,Neurologie,+33 7 52 56 82 67,marie.lefevre@clinique-b.com,actif
+MED-44,Bertrand,Monique,Hématologie,+33 7 64 65 71 32,monique.bertrand@clinique-b.com,vacances
+MED-75,David,Alain,Radiologie,,alain.david@clinique-b.com,vacances
+MED-12,André,Claude,Rhumatologie,+33 7 42 94 59 61,claude.andré@clinique-b.com,actif
+MED-66,Martin,Stéphane,Hématologie,+33 7 89 93 50 29,stéphane.martin@clinique-b.com,vacances
+MED-82,Vincent,Nathalie,Cardiologie,+33 6 81 50 48 88,nathalie.vincent@clinique-b.com,actif
+MED-13,Richard,Claude,Dermatologie,+33 6 25 67 53 42,claude.richard@clinique-b.com,inactif
+MED-99,Dubois,Sandrine,Ophtalmologie,+33 7 74 15 31 21,sandrine.dubois@clinique-b.com,vacances
+MED-95,Robert,Valérie,Chirurgie générale,+33 7 18 57 88 67,valérie.robert@clinique-b.com,actif
+MED-60,Vincent,Sylvie,Endocrinologie,+33 6 26 72 63 46,sylvie.vincent@clinique-b.com,actif
+MED-33,Morel,Michel,Rhumatologie,+33 7 50 99 84 12,michel.morel@clinique-b.com,inactif

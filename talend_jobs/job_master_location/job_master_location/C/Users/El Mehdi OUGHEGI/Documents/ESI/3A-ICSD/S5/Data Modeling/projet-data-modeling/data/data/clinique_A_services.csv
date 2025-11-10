@@ -1,0 +1,21 @@
+code,nom,departement,responsable,tel,email,categorie
+CARD-01,Cardiologie,Laboratoire,Dr. Leroy,0525657224,card01@clinique-a.fr,Clinique
+URG-19,Urgences,Chirurgie,Dr. Petit,0248865172,urg19@clinique-a.fr,Clinique
+DERM-02,Dermatologie,Urgences,Dr. Robert,0178587147,,Clinique
+OPHT-09,Ophtalmologie,Pédiatrie,Dr. Martin,0193928622,opht09@clinique-a.fr,Clinique
+GYNE-05,Gynécologie,Médecine générale,Dr. Thomas,0174059567,gyne05@clinique-a.fr,Clinique
+RH-23,Ressources Humaines,Laboratoire,Dr. Martin,0216604148,,Administratif
+ADM-21,Administration,Bloc opératoire,Dr. Moreau,0359595343,adm21@clinique-a.fr,Administratif
+NEUR-07,Neurologie,Radiologie,Dr. Moreau,0241307827,neur07@clinique-a.fr,Clinique
+RAD-14,Radiologie,Médecine générale,Dr. Martin,0147308442,rad14@clinique-a.fr,Support
+ORTH-10,Orthopédie,Pédiatrie,Dr. Richard,0596810736,orth10@clinique-a.fr,Clinique
+PSYC-13,Psychiatrie,Urgences,Dr. Thomas,0424967851,psyc13@clinique-a.fr,Clinique
+HEMA-06,Hématologie,Administration,Dr. Durand,0168147717,hema06@clinique-a.fr,Clinique
+PNEU-12,Pneumologie,Cardiologie,Dr. Moreau,0296227982,pneu12@clinique-a.fr,Clinique
+ONCO-08,Oncologie,Laboratoire,Dr. Robert,0146513811,,Clinique
+PEDI-11,Pédiatrie,Cardiologie,Dr. Robert,0594084092,pedi11@clinique-a.fr,Clinique
+CHIR-17,Chirurgie générale,Administration,Dr. Richard,0318707551,chir17@clinique-a.fr,Clinique
+GAST-04,Gastro-entérologie,Pédiatrie,Dr. Petit,0418779761,gast04@clinique-a.fr,Clinique
+LAB-20,Laboratoire,Pédiatrie,Dr. Bernard,0570368930,,Support
+RHUM-15,Rhumatologie,Laboratoire,Dr. Richard,0219980444,rhum15@clinique-a.fr,Clinique
+URO-16,Urologie,Chirurgie,Dr. Robert,0146781496,uro16@clinique-a.fr,Clinique

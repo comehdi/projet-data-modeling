@@ -1,0 +1,19 @@
+code_service,nom_service,dept,manager,telephone,email_service,type
+C001,Cardiologie,Soins intensifs,Dr. Leroy,0214652559,c001@clinique-b.com,Clinique
+U001,Service des Urgences,Soins intensifs,Dr. Durand,,u001@clinique-b.com,Clinique
+RHUM-15,Rhumatologie,Laboratoire,Dr. Petit,,rhum15@clinique-b.com,Clinique
+HEMA-06,Hématologie,Chirurgie,Dr. Bernard,0570262017,hema06@clinique-b.com,Clinique
+URO-16,Urologie,Soins intensifs,Dr. Thomas,0154796048,uro16@clinique-b.com,Clinique
+ORTH-10,Orthopédie,Urgences,Dr. Dubois,0235226878,orth10@clinique-b.com,Clinique
+COMPT-22,Comptabilité,Laboratoire,Dr. Bernard,,,Administratif
+OPHT-09,Ophtalmologie,Radiologie,Dr. Leroy,0293106992,opht09@clinique-b.com,Clinique
+ADM-21,Administration,Pédiatrie,Dr. Martin,0397628677,adm21@clinique-b.com,Administratif
+PEDI-11,Pédiatrie,Chirurgie,Dr. Dubois,,pedi11@clinique-b.com,Clinique
+NEUR-07,Neurologie,Pédiatrie,Dr. Petit,0131164356,neur07@clinique-b.com,Clinique
+LAB-20,Laboratoire,Chirurgie,Dr. Robert,0288560395,lab20@clinique-b.com,Support
+ENDO-03,Endocrinologie,Chirurgie,Dr. Durand,0431928594,endo03@clinique-b.com,Clinique
+RAD-14,Radiologie,Pédiatrie,Dr. Moreau,0475438712,rad14@clinique-b.com,Support
+RH-23,Ressources Humaines,Urgences,Dr. Robert,0460723830,rh23@clinique-b.com,Administratif
+CHIR-17,Chirurgie générale,Chirurgie,Dr. Richard,0340200790,chir17@clinique-b.com,Clinique
+PNEU-12,Pneumologie,Cardiologie,Dr. Robert,,pneu12@clinique-b.com,Clinique
+DERM-02,Dermatologie,Pédiatrie,Dr. Martin,0423064220,,Clinique

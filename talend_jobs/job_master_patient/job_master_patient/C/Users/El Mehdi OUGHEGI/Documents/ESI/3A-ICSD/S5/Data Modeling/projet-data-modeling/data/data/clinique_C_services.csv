@@ -1,0 +1,23 @@
+code,nom,departement,responsable,telephone,email,categorie
+CARD,Service de Cardiologie,Médecine générale,Dr. Richard,0369545211,card@clinique-c.fr,Clinique
+URG,URGENCES,Administration,Dr. Martin,0285824905,urg@clinique-c.fr,Clinique
+DERM-02,DERMATOLOGIE,Soins intensifs,Dr. Richard,,,Clinique
+PSYC-13,PSYCHIATRIE,Soins intensifs,Dr. Durand,0554547431,psyc13@clinique-c.fr,Clinique
+NEUR-07,Neurologie,Soins intensifs,Dr. Dubois,,,Clinique
+ENDO-03,Endocrinologie,Soins intensifs,Dr. Petit,0294691003,endo03@clinique-c.fr,Clinique
+CHIR-17,Chirurgie générale,Administration,Dr. Leroy,,chir17@clinique-c.fr,Clinique
+LAB-20,LABORATOIRE,Soins intensifs,Dr. Bernard,0181524305,lab20@clinique-c.fr,Support
+COMPT-22,Comptabilité,Soins intensifs,Dr. Richard,0347476256,compt22@clinique-c.fr,Administratif
+ANES-18,Anesthésie,Laboratoire,Dr. Martin,0513563623,anes18@clinique-c.fr,Support
+HEMA-06,HÉMATOLOGIE,Médecine générale,Dr. Thomas,0211843902,hema06@clinique-c.fr,Clinique
+ONCO-08,ONCOLOGIE,Cardiologie,Dr. Petit,0366492146,onco08@clinique-c.fr,Clinique
+RHUM-15,Rhumatologie,Chirurgie,Dr. Martin,0544940512,rhum15@clinique-c.fr,Clinique
+GAST-04,Gastro-entérologie,Pédiatrie,Dr. Robert,0598341902,gast04@clinique-c.fr,Clinique
+OPHT-09,Ophtalmologie,Médecine générale,Dr. Durand,0590398775,opht09@clinique-c.fr,Clinique
+RAD-14,Radiologie,Pédiatrie,Dr. Thomas,,rad14@clinique-c.fr,Support
+RH-23,Ressources Humaines,Cardiologie,Dr. Martin,0253723916,rh23@clinique-c.fr,Administratif
+PNEU-12,Pneumologie,Administration,Dr. Thomas,0485008605,pneu12@clinique-c.fr,Clinique
+ORTH-10,ORTHOPÉDIE,Pédiatrie,Dr. Moreau,0537126606,orth10@clinique-c.fr,Clinique
+URO-16,Urologie,Soins intensifs,Dr. Moreau,0450437176,uro16@clinique-c.fr,Clinique
+ADM-21,Administration,Cardiologie,Dr. Dubois,0346661277,,Administratif
+GYNE-05,GYNÉCOLOGIE,Soins intensifs,Dr. Durand,0513035107,gyne05@clinique-c.fr,Clinique
