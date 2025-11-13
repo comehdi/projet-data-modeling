@@ -699,12 +699,14 @@ Ce projet est conçu pour :
 ## 🤝 Contribution
 
 Ce projet est un projet académique. Pour toute question ou suggestion, veuillez créer une issue.
+
 Un projet réalisé par [OUGHEGI El Mehdi](https://github.com/comehdi) & [Mohammed Lamziouaq](https://github.com/medlamziouaq)
 
 ## 📄 Licence
 
 
 Ce projet est distribué sous la licence MIT et est destiné à un usage éducatif dans le cadre du cours de Data Modeling.
+
 Consultez le fichier [LICENCE](LICENSE) pour plus de détails.
 
 ---
