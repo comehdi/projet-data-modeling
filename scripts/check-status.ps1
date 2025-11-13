@@ -55,7 +55,7 @@ Write-Host "Résumé" -ForegroundColor Cyan
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Services disponibles :" -ForegroundColor White
-Write-Host "  - PostgreSQL MDM Hub:     localhost:5435" -ForegroundColor Cyan
+Write-Host "  - PostgreSQL MDM Hub:     localhost:5432" -ForegroundColor Cyan
 Write-Host "  - Airflow Webserver:      http://localhost:8081" -ForegroundColor Cyan
 Write-Host "  - Kafka:                  localhost:9092" -ForegroundColor Cyan
 Write-Host "  - Zookeeper:              localhost:2181" -ForegroundColor Cyan

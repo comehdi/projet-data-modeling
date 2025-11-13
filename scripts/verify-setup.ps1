@@ -299,7 +299,7 @@ if ($warnings.Count -gt 0) {
 
 Write-Host ""
 Write-Host "Services disponibles:" -ForegroundColor Cyan
-Write-Host "  - PostgreSQL MDM Hub:     localhost:5435" -ForegroundColor White
+Write-Host "  - PostgreSQL MDM Hub:     localhost:5432" -ForegroundColor White
 Write-Host "    User: mdm_user, Password: mdm_password, DB: mdm_clinique" -ForegroundColor Gray
 Write-Host "  - Airflow Webserver:      http://localhost:8081" -ForegroundColor White
 Write-Host "    User: admin, Password: admin" -ForegroundColor Gray

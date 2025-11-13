@@ -44,7 +44,7 @@ Write-Host "Services démarrés !" -ForegroundColor Green
 Write-Host "==========================================" -ForegroundColor Green
 Write-Host ""
 Write-Host "Services disponibles :" -ForegroundColor Cyan
-Write-Host "  - PostgreSQL MDM Hub:     localhost:5435"
+Write-Host "  - PostgreSQL MDM Hub:     localhost:5432"
 $openmetadataRunning = docker-compose ps | Select-String "openmetadata-server"
 if ($openmetadataRunning) {
     Write-Host "  - OpenMetadata Server:    http://localhost:8585"

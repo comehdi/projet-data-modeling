@@ -1,7 +1,6 @@
 services:
   # =====================================================
   # PostgreSQL MDM Hub - Base de données principale
-  # NOTE: Port externe 5435 pour éviter les conflits avec PostgreSQL local
   # =====================================================
   postgres-mdm-hub:
     image: postgres:15-alpine
@@ -12,10 +11,16 @@ services:
       POSTGRES_PASSWORD: root
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
-      - "5435:5432"  # Port externe 5435 pour éviter les conflits
+      - "5432:5432"
     volumes:
       - postgres_mdm_data:/var/lib/postgresql/data
+      - ./sql/00-enable-pg-stat-statements.sql:/docker-entrypoint-initdb.d/00-enable-pg-stat-statements.sql
       - ./sql/01-create-tables.sql:/docker-entrypoint-initdb.d/01-create-tables.sql
+    command: >
+      postgres
+      -c shared_preload_libraries=pg_stat_statements
+      -c pg_stat_statements.max=10000
+      -c pg_stat_statements.track=all
     networks:
       - mdm-network
     healthcheck:
@@ -28,9 +33,10 @@ services:
   # OpenMetadata - Base de données
   # NOTE: Ces services sont sous le profil "openmetadata"
   # Pour les démarrer: docker-compose --profile openmetadata up -d
+  # Port externe 5433 pour éviter les conflits avec PostgreSQL local
   # =====================================================
   openmetadata-db:
-    image: docker.getcollate.io/openmetadata/postgresql:1.9.11
+    image: docker.getcollate.io/openmetadata/postgresql:1.10.5
     container_name: openmetadata-db
     restart: always
     command: "--work_mem=10MB"
@@ -38,7 +44,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     ports:
-      - "5433:5432"
+      - "5433:5432"  # Port externe 5433 pour éviter les conflits
     volumes:
       - openmetadata_db_data:/var/lib/postgresql/data
     networks:
@@ -50,6 +56,7 @@ services:
       retries: 10
     profiles:
       - openmetadata
+      - openmetadata-init  # Inclus aussi dans openmetadata-init pour la migration
 
   # =====================================================
   # Elasticsearch pour OpenMetadata
@@ -76,12 +83,14 @@ services:
       retries: 10
     profiles:
       - openmetadata
+      - openmetadata-init  # Inclus aussi dans openmetadata-init pour la migration
 
   # =====================================================
   # OpenMetadata - Migration (one-time)
+  # Exécutez ce service une seule fois pour initialiser la base de données
   # =====================================================
   openmetadata-migrate:
-    image: docker.getcollate.io/openmetadata/server:1.9.11
+    image: docker.getcollate.io/openmetadata/server:1.10.5
     container_name: openmetadata-migrate
     command: "./bootstrap/openmetadata-ops.sh migrate"
     environment:
@@ -118,7 +127,7 @@ services:
   # OpenMetadata Server
   # =====================================================
   openmetadata-server:
-    image: docker.getcollate.io/openmetadata/server:1.9.11
+    image: docker.getcollate.io/openmetadata/server:1.10.5
     container_name: openmetadata-server
     restart: always
     ports:
@@ -144,6 +153,14 @@ services:
       EVENT_MONITOR: prometheus
       SECRET_MANAGER: db
       OPENMETADATA_HEAP_OPTS: -Xmx1G -Xms1G
+      # Configuration pour se connecter à l'Airflow d'ingestion
+      # Utiliser le nom du conteneur Docker au lieu de localhost
+      PIPELINE_SERVICE_CLIENT_ENDPOINT: http://openmetadata-ingestion:8080
+      AIRFLOW_USERNAME: admin
+      AIRFLOW_PASSWORD: admin
+      # VARIABLE CLÉ : URL du serveur OpenMetadata utilisée dans les workflows générés
+      # Cette URL doit être accessible depuis le conteneur openmetadata-ingestion
+      SERVER_HOST_API_URL: http://openmetadata-server:8585/api
     depends_on:
       elasticsearch:
         condition: service_healthy
@@ -156,6 +173,58 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+    profiles:
+      - openmetadata
+
+  # =====================================================
+  # OpenMetadata Ingestion (Airflow pour les DAGs d'ingestion)
+  # NOTE: Ce service crée son propre Airflow interne pour exécuter les DAGs d'ingestion
+  # Port externe 8080 pour OpenMetadata, port 8081 pour l'Airflow du projet MDM
+  # =====================================================
+  openmetadata-ingestion:
+    image: docker.getcollate.io/openmetadata/ingestion:1.10.5
+    container_name: openmetadata-ingestion
+    depends_on:
+      openmetadata-server:
+        condition: service_started
+      elasticsearch:
+        condition: service_started
+      openmetadata-db:
+        condition: service_healthy
+    environment:
+      AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session"
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__OPENMETADATA_AIRFLOW_APIS__DAG_GENERATED_CONFIGS: "/opt/airflow/dag_generated_configs"
+      # Configuration de la base de données Airflow pour l'ingestion
+      # Utilise la même base openmetadata-db mais avec un schéma différent
+      DB_HOST: openmetadata-db
+      DB_PORT: 5432
+      AIRFLOW_DB: airflow_db
+      DB_USER: airflow_user
+      DB_SCHEME: postgresql+psycopg2
+      DB_PASSWORD: airflow_pass
+      # Configuration de la base de données Airflow pour l'ingestion
+      # L'URL du serveur OpenMetadata est déterminée par SERVER_HOST_API_URL dans openmetadata-server
+      # Pas besoin de variables OPENMETADATA_SERVER_URL ici
+    entrypoint: /bin/bash
+    command:
+      - "/opt/airflow/ingestion_dependency.sh"
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"  # Port externe 8080 pour OpenMetadata Ingestion
+    networks:
+      - mdm-network
+    volumes:
+      - openmetadata_ingestion_dag_configs:/opt/airflow/dag_generated_configs
+      - openmetadata_ingestion_dags:/opt/airflow/dags
+      - openmetadata_ingestion_tmp:/tmp
+      # Ajouter les DAGs du projet MDM pour qu'ils soient aussi dans le port 8080
+      # Airflow lit récursivement tous les fichiers .py dans /opt/airflow/dags
+      - ./airflow/dags:/opt/airflow/dags/project_mdm:ro
+      - ./airflow/config:/opt/airflow/config/project_mdm:ro
+      - ./talend_jobs:/opt/airflow/talend_jobs:ro
+      - ./data:/opt/airflow/data:ro
     profiles:
       - openmetadata
 
@@ -397,6 +466,12 @@ volumes:
   zookeeper_log:
     driver: local
   kafka_data:
+    driver: local
+  openmetadata_ingestion_dag_configs:
+    driver: local
+  openmetadata_ingestion_dags:
+    driver: local
+  openmetadata_ingestion_tmp:
     driver: local
 
 # =====================================================

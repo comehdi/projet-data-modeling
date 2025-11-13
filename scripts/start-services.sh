@@ -54,7 +54,7 @@ echo "Services démarrés !"
 echo "=========================================="
 echo ""
 echo "Services disponibles :"
-echo "  - PostgreSQL MDM Hub:     localhost:5435"
+echo "  - PostgreSQL MDM Hub:     localhost:5432"
 if docker-compose ps | grep -q "openmetadata-server"; then
     echo "  - OpenMetadata Server:    http://localhost:8585"
 fi

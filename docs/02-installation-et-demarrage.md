@@ -73,7 +73,7 @@ Une fois les services démarrés, vous pouvez accéder à :
 
 | Service | URL | Identifiants |
 |---------|-----|--------------|
-| **PostgreSQL MDM Hub** | `localhost:5435` | User: `mdm_user`<br>Password: `mdm_password`<br>Database: `mdm_clinique` |
+| **PostgreSQL MDM Hub** | `localhost:5432` | User: `postgres`<br>Password: `root`<br>Database: `mdm_clinique` |
 | **OpenMetadata** | http://localhost:8585 | Pas d'authentification (no-auth) |
 | **Airflow** | http://localhost:8081 | User: `admin`<br>Password: `admin` |
 | **Kafka** | `localhost:9092` | - |
@@ -147,12 +147,12 @@ docker system prune -a --volumes
 1. Vérifier que les ports ne sont pas déjà utilisés :
 ```bash
 # Windows
-netstat -ano | findstr :5435
+netstat -ano | findstr :5432
 netstat -ano | findstr :8585
 netstat -ano | findstr :8081
 
 # Linux/Mac
-lsof -i :5435
+lsof -i :5432
 lsof -i :8585
 lsof -i :8081
 ```

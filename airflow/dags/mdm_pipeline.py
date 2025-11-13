@@ -11,7 +11,8 @@ default_args = {
 }
 
 BASE_TALEND = "/opt/airflow/talend_jobs"
-INIT_SCRIPT = "/opt/airflow/config/init-talend.sh"
+# Le script init-talend.sh est monté dans /opt/airflow/config/project_mdm/
+INIT_SCRIPT = "/opt/airflow/config/project_mdm/init-talend.sh"
 
 JOB_PATIENT = f"{BASE_TALEND}/job_master_patient/job_master_patient/job_master_patient_run.sh"
 JOB_PRATICIEN = f"{BASE_TALEND}/job_master_praticien/job_master_praticien/job_master_praticien_run.sh"
