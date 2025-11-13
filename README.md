@@ -220,7 +220,7 @@ docker-compose ps
 ```
 
 Vous pouvez accéder à :
-- **Airflow** : http://localhost:8081 (admin/admin)
+- **Airflow** : http://localhost:8080 (admin/admin)
 - **PostgreSQL MDM Hub** : localhost:5432 (postgres/root)
 
 **Note** : Si vous rencontrez des erreurs avec les scripts, utilisez ces commandes de base.
