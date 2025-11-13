@@ -73,6 +73,108 @@ Vous devriez voir :
 - `Processed records: 11` ou plus (tables + colonnes)
 - `Success %: 100.0`
 
+## Configurer et lancer le Profiler Agent pour voir les données
+
+Maintenant que vos tables sont visibles avec leurs colonnes dans OpenMetadata, vous devez configurer le **Profiler Agent** pour qu'OpenMetadata puisse lire les données (sample data) de vos tables.
+
+### Étape 1 : Vérifier que les tables contiennent des données
+
+Avant de configurer le Profiler Agent, assurez-vous que vos tables PostgreSQL contiennent des données :
+
+```bash
+# Se connecter à PostgreSQL
+docker exec -it postgres-mdm-hub psql -U postgres -d mdm_clinique
+
+# Vérifier les données dans les tables
+SELECT COUNT(*) FROM mdm_patient;
+SELECT COUNT(*) FROM mdm_praticien;
+SELECT COUNT(*) FROM mdm_service;
+SELECT COUNT(*) FROM mdm_location;
+
+# Quitter PostgreSQL
+\q
+```
+
+Si les tables sont vides, lancez d'abord vos jobs Talend via Airflow pour remplir les tables.
+
+### Étape 2 : Configurer le Profiler Agent dans OpenMetadata
+
+1. **Accéder à OpenMetadata** : http://localhost:8585
+
+2. **Naviguer vers votre service** :
+   - Allez dans **Settings** → **Services** → **Databases**
+   - Cliquez sur votre service **MDM Clinique Hub**
+
+3. **Accéder à l'onglet Agents** :
+   - Cliquez sur l'onglet **Agents** (en haut de la page)
+
+4. **Ajouter un Profiler Agent** :
+   - Cliquez sur le bouton bleu **Add Agent** (menu déroulant)
+   - Sélectionnez **Add Profiler Agent**
+
+5. **Configurer le Profiler Agent** :
+   - **Name** : `mdm_clinique_hub_profiler`
+   - **Table Filter Pattern - Includes** : Ajoutez vos 4 tables (tapez le nom, puis "Entrée")
+     - `mdm_patient`
+     - `mdm_praticien`
+     - `mdm_service`
+     - `mdm_location`
+   - **Data Profiler Options** :
+     - **Profile Sample** : Tapez `100` (pour 100 lignes) ou `100%` (pour 100% des données)
+     - **Profile Sample Type** : Choisissez **ROWS** (Lignes)
+     - **Cochez la case** : **Include Columns**
+   - Cliquez sur **Next**
+
+6. **Configurer la planification** :
+   - **Schedule Interval** : Choisissez **Day** (Quotidien)
+   - Il est logique de le faire tourner après votre job Talend (ex: à 1h00 du matin, si votre job Talend tourne à minuit)
+   - Cliquez sur **Add & Deploy**
+
+### Étape 3 : Lancer le Profiler Agent
+
+1. **Retourner à l'onglet Agents** :
+   - Vous devriez maintenant voir deux agents :
+     - Votre agent d'ingestion (Metadata Ingestion)
+     - Votre nouveau Profiler Agent (`mdm_clinique_hub_profiler`)
+
+2. **Lancer le Profiler Agent** :
+   - Trouvez votre **mdm_clinique_hub_profiler**
+   - Cliquez sur l'icône **▶️ (Run)** pour le lancer immédiatement
+
+3. **Vérifier le statut** :
+   - Attendez que le statut passe à **Success**
+   - Vous pouvez voir les logs en cliquant sur l'icône de logs
+
+### Étape 4 : Vérifier les données dans OpenMetadata
+
+1. **Naviguer vers vos tables** :
+   - Allez dans **Explore** → **Tables**
+   - Sélectionnez votre service **MDM Clinique Hub**
+   - Cliquez sur une de vos tables (ex: `mdm_patient`)
+
+2. **Vérifier les données** :
+   - Allez dans l'onglet **Sample Data**
+   - Vous devriez maintenant voir les données de vos tables
+   - Vous pouvez également voir les statistiques dans l'onglet **Profiler & Data Quality**
+
+### Résolution des problèmes du Profiler Agent
+
+Si le Profiler Agent échoue :
+
+1. **Vérifier les logs** :
+   - Cliquez sur l'icône de logs à côté du Profiler Agent
+   - Vérifiez les erreurs dans les logs
+
+2. **Vérifier que les tables contiennent des données** :
+   - Utilisez les commandes SQL ci-dessus pour vérifier
+
+3. **Relancer le Profiler Agent** :
+   - Cliquez à nouveau sur l'icône **▶️ (Run)**
+
+4. **Vérifier la configuration** :
+   - Assurez-vous que le **Table Filter Pattern** est correct
+   - Vérifiez que le **Profile Sample** est configuré correctement
+
 ## Si le problème persiste
 
 1. **Supprimer et recréer le service**
@@ -93,8 +195,19 @@ Vous devriez voir :
 
 ## Notes importantes
 
+### Ingestion des métadonnées
+
 - Les colonnes sont ingérées automatiquement avec les tables si `includeTables: true` est activé
 - Si `Processed records: 0`, cela signifie que les tables existent déjà dans OpenMetadata et sont considérées comme à jour
 - L'option `Override Metadata: true` force OpenMetadata à réingérer même si les tables existent déjà
 - L'option `Force Entity Overwriting: true` force l'écrasement des métadonnées existantes
+
+### Profiler Agent
+
+- Le **Profiler Agent** est nécessaire pour générer les **sample data** (données d'échantillonnage) dans OpenMetadata
+- L'ingestion des métadonnées (tables et colonnes) et le profilage des données (sample data) sont deux processus distincts
+- Le Profiler Agent doit être configuré **après** que les tables contiennent des données dans PostgreSQL
+- Le Profiler Agent peut être planifié pour s'exécuter automatiquement (ex: quotidiennement après les jobs Talend)
+- Le **Profile Sample** peut être configuré en nombre de lignes (ex: 100) ou en pourcentage (ex: 100%)
+- Les statistiques générées par le Profiler Agent sont disponibles dans l'onglet **Profiler & Data Quality** de chaque table
 

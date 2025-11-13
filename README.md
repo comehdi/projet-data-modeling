@@ -20,6 +20,9 @@
 - [Structure du projet](#structure-du-projet)
 - [Scripts utilitaires](#scripts-utilitaires)
 - [Dépannage](#dépannage)
+  - [Guide de dépannage complet](#guide-de-dépannage-complet)
+  - [Problèmes courants](#problèmes-courants)
+  - [Documentation de dépannage](#documentation-de-dépannage)
 
 ## 🎯 Vue d'ensemble
 
@@ -217,7 +220,7 @@ docker-compose ps
 ```
 
 Vous pouvez accéder à :
-- **Airflow** : http://localhost:8080 (admin/admin)
+- **Airflow** : http://localhost:8081 (admin/admin)
 - **PostgreSQL MDM Hub** : localhost:5432 (postgres/root)
 
 **Note** : Si vous rencontrez des erreurs avec les scripts, utilisez ces commandes de base.
@@ -437,9 +440,13 @@ Une fois les services démarrés, vous pouvez accéder à :
 
 ### Guides de dépannage
 
+- **[Guide de Dépannage Complet](docs/troubleshooting-guide.md)** - Liste complète des problèmes et solutions
 - **[Corriger Elasticsearch et Service](docs/corriger-elasticsearch-et-service.md)** - Résolution des problèmes Elasticsearch
 - **[Corriger Lineage Pipeline Database](docs/corriger-lineage-pipeline-database.md)** - Résolution des problèmes de lineage
-- **[Relancer ingestion colonnes vides](docs/relancer-ingestion-colonnes-vides.md)** - Résolution des tables sans colonnes
+- **[Relancer ingestion colonnes vides](docs/relancer-ingestion-colonnes-vides.md)** - Résolution des tables sans colonnes et configuration Profiler Agent
+- **[Corriger Pipeline Service](docs/corriger-pipeline-service.md)** - Configuration Pipeline Service (PostgreSQL vs Airflow)
+- **[Configurer Pipeline Service](docs/configurer-pipeline-service-openmetadata.md)** - Configuration Pipeline Service
+- **[Dépannage Airflow](docs/04-depannage-airflow.md)** - Problèmes courants Airflow
 
 ## 📁 Structure du projet
 
@@ -502,6 +509,10 @@ projet-data-modeling/
 
 ## 🔍 Dépannage
 
+### Guide de dépannage complet
+
+Pour une liste complète des problèmes courants et leurs solutions, consultez le **[Guide de Dépannage Complet](docs/troubleshooting-guide.md)**.
+
 ### Problèmes courants
 
 #### Les services ne démarrent pas
@@ -517,17 +528,113 @@ docker-compose ps
 docker-compose restart <service-name>
 ```
 
+#### Erreur : "Failed to trigger workflow due to airflow API returned Internal Server Error" avec `localhost:8585`
+
+**Cause** : L'Airflow d'ingestion essaie de se connecter au serveur OpenMetadata via `localhost:8585` au lieu d'utiliser le nom du conteneur Docker.
+
+**Solution** : Vérifiez que la variable d'environnement `SERVER_HOST_API_URL` est configurée dans `openmetadata-server` :
+
+```bash
+docker exec openmetadata-server env | grep SERVER_HOST_API_URL
+```
+
+Vous devriez voir : `SERVER_HOST_API_URL=http://openmetadata-server:8585/api`
+
+Si ce n'est pas le cas, redémarrez le conteneur :
+
+```bash
+docker-compose --profile openmetadata restart openmetadata-server
+```
+
+**Documentation détaillée** : Voir [Guide de Dépannage](docs/troubleshooting-guide.md#erreur-failed-to-trigger-workflow-due-to-airflow-api-returned-internal-server-error-avec-connection-refused-sur-localhost8585) ou [Configuration OpenMetadata](docs/03-openmetadata-options.md)
+
+#### Erreur : "Failed to fetch queries, please validate if postgres instance has pg_stat_statements extension installed"
+
+**Cause** : L'extension `pg_stat_statements` n'est pas activée dans PostgreSQL.
+
+**Solution** : L'extension est automatiquement configurée dans `docker-compose.yml`. Si vous avez des problèmes :
+
+```bash
+# Vérifier que l'extension est installée
+docker exec postgres-mdm-hub psql -U postgres -d mdm_clinique -c "SELECT extname, extversion FROM pg_extension WHERE extname = 'pg_stat_statements';"
+
+# Redémarrer PostgreSQL si nécessaire
+docker-compose restart postgres-mdm-hub
+```
+
+**Documentation détaillée** : Voir [Guide de Dépannage](docs/troubleshooting-guide.md#erreur-failed-to-fetch-queries-please-validate-if-postgres-instance-has-pg_stat_statements-extension-installed) ou [Configuration OpenMetadata](docs/03-openmetadata-options.md)
+
+#### Erreur : "No DAG run found"
+
+**Cause** : Le pipeline d'ingestion n'a pas été exécuté. Le DAG existe mais aucun run n'a été créé.
+
+**Solution** : Déclencher manuellement le DAG via l'interface OpenMetadata ou Airflow :
+
+```bash
+# Via l'interface OpenMetadata
+# Settings > Services > Databases > MDM Clinique Hub > Ingestion Pipelines > Run Now
+
+# Via l'interface Airflow
+# Ouvrez http://localhost:8080 > Trouvez votre DAG > Trigger DAG
+```
+
+**Documentation détaillée** : Voir [Guide de Dépannage](docs/troubleshooting-guide.md#erreur-no-dag-run-found)
+
 #### OpenMetadata ne se connecte pas à Airflow
 
-Voir [Corriger Lineage Pipeline Database](docs/corriger-lineage-pipeline-database.md)
+**Cause** : Le service `openmetadata-ingestion` n'est pas démarré ou la base de données Airflow n'est pas initialisée.
+
+**Solution** :
+
+1. **Initialiser la base de données Airflow** :
+```powershell
+.\scripts\init-openmetadata-airflow.ps1
+```
+
+2. **Redémarrer le service** :
+```bash
+docker-compose --profile openmetadata restart openmetadata-ingestion
+```
+
+**Documentation détaillée** : Voir [Guide de Dépannage](docs/troubleshooting-guide.md#erreur-failed-to-connect-to-airflow) ou [Configuration OpenMetadata](docs/03-openmetadata-options.md)
 
 #### Tables vides dans OpenMetadata
 
-Voir [Relancer ingestion colonnes vides](docs/relancer-ingestion-colonnes-vides.md)
+**Symptôme 1** : Les tables sont visibles mais n'ont pas de colonnes affichées.
+
+**Solution** : Voir [Relancer ingestion colonnes vides](docs/relancer-ingestion-colonnes-vides.md)
+
+**Symptôme 2** : Les tables ont des colonnes mais pas de données d'échantillonnage (Sample Data).
+
+**Solution** : Configurez et lancez le **Profiler Agent** dans OpenMetadata. Voir [Relancer ingestion colonnes vides](docs/relancer-ingestion-colonnes-vides.md#configurer-et-lancer-le-profiler-agent-pour-voir-les-données)
+
+**Documentation détaillée** : Voir [Guide de Dépannage](docs/troubleshooting-guide.md#tables-vides-dans-openmetadata)
 
 #### Erreurs Elasticsearch
 
-Voir [Corriger Elasticsearch et Service](docs/corriger-elasticsearch-et-service.md)
+**Symptôme** : `Search failed due to Elasticsearch exception [type=search_phase_execution_exception, reason=all shards failed]`
+
+**Solution** :
+
+```bash
+# Redémarrer Elasticsearch
+docker-compose --profile openmetadata restart elasticsearch
+Start-Sleep -Seconds 20
+
+# Redémarrer OpenMetadata Server
+docker-compose --profile openmetadata restart openmetadata-server
+Start-Sleep -Seconds 30
+```
+
+**Documentation détaillée** : Voir [Guide de Dépannage](docs/troubleshooting-guide.md#erreur-search-failed-due-to-elasticsearch-exception) ou [Corriger Elasticsearch et Service](docs/corriger-elasticsearch-et-service.md)
+
+#### Erreur : "relation serialized_dag does not exist"
+
+**Cause** : Vous avez configuré **PostgreSQL** comme **Pipeline Service** au lieu d'**Airflow**.
+
+**Solution** : Voir [Corriger Pipeline Service](docs/corriger-pipeline-service.md)
+
+**Documentation détaillée** : Voir [Guide de Dépannage](docs/troubleshooting-guide.md#erreur-relation-serialized_dag-does-not-exist)
 
 ### Commandes utiles
 
@@ -547,6 +654,17 @@ docker-compose down -v
 # Vérifier l'utilisation des ressources
 docker stats
 ```
+
+### Documentation de dépannage
+
+- **[Guide de Dépannage Complet](docs/troubleshooting-guide.md)** - Liste complète des problèmes et solutions
+- [Configuration OpenMetadata](docs/03-openmetadata-options.md) - Configuration et dépannage OpenMetadata
+- [Dépannage Airflow](docs/04-depannage-airflow.md) - Problèmes courants Airflow
+- [Relancer ingestion colonnes vides](docs/relancer-ingestion-colonnes-vides.md) - Tables vides et Profiler Agent
+- [Corriger Elasticsearch et Service](docs/corriger-elasticsearch-et-service.md) - Problèmes Elasticsearch
+- [Corriger Pipeline Service](docs/corriger-pipeline-service.md) - Configuration Pipeline Service
+- [Corriger Lineage Pipeline Database](docs/corriger-lineage-pipeline-database.md) - Problèmes de lineage
+- [Configurer Pipeline Service](docs/configurer-pipeline-service-openmetadata.md) - Configuration Pipeline Service
 
 ## 📊 Golden Tables
 
